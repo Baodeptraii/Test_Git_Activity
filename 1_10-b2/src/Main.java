@@ -1,0 +1,22 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner in = new Scanner(new File("src/POLYGON.in"));
+        int t = in.nextInt();
+        while (t-- > 0) {
+            int n = in.nextInt();
+            Point[] p = new Point[n];
+            for (int i = 0; i < n; i++) {
+                p[i] = new Point(in.nextInt(), in.nextInt());
+            }
+
+            // Using the Polygon class
+            Polygon poly = new Polygon(p);
+            System.out.printf("%.3f%n", poly.getArea());
+        }
+        in.close();
+    }
+}

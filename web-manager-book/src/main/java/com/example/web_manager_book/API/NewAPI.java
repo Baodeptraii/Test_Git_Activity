@@ -1,27 +1,38 @@
 package com.example.web_manager_book.API;
 
-import com.example.web_manager_book.Repository.Query.QueryIF;
+import com.example.web_manager_book.DTO.ThongTinCuaHang;
+import com.example.web_manager_book.Entity.Customer;
+import com.example.web_manager_book.Entity.Sach;
+
+import com.example.web_manager_book.Repository.Query.SachRepo;
+import com.example.web_manager_book.Service.HoaDonService;
+import com.example.web_manager_book.Service.ThongTinService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class NewAPI {
 
 
     @Autowired
-    private QueryIF query;
+    private HoaDonService hoaDonService;
 
-    @GetMapping(value = "/test")
-    public  String createCustomer()
+    @Autowired
+    private ThongTinService thongTinService;
+
+    @GetMapping("/building/")
+    public List<ThongTinCuaHang> getSach(@RequestParam Map<String, String> params)
     {
-//        Customer customer = query.getReferenceById(1L);
-//
-//        String k=customer.toString();
-//        for(HoaDon hoaDon:customer.getCustomer_hoadon())
-//        {
-//            k+=hoaDon.toString();
-//        }
-        return "Oke";
+//        String k=params.get("name").toString();
+//        Sach sach=sachRepo.findByTenSachAndMaSach(params.get("Truyen 1").toString(),Long.parseLong(params.get("abc").toString()));
+
+
+        return thongTinService.getAll();// phần trang chủ có những Quyển sách nào
     }
+
+
+
 }

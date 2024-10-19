@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin sách</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center; /* Căn giữa nội dung của body */
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Căn giữa các phần tử trong form */
+            margin-top: 20px; /* Khoảng cách trên */
+        }
+        .input-group {
+            display: flex;
+            justify-content: center; /* Căn giữa các ô nhập liệu */
+            margin-bottom: 10px;
+        }
+        label {
+            margin-right: 10px;
+            align-self: center;
+        }
+        input[type="text"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Nhập thông tin sách tìm kiếm</h1>
+
+<form action="/timkiem/" method="get" class="form-container">
+    <div class="input-group">
+        <label for="tenSach">Tên sách:</label>
+        <input type="text" id="tenSach" name="tenSach">
+
+        <label for="loaiSach">Loại sách:</label>
+        <input type="text" id="loaiSach" name="loaiSach">
+
+        <label for="tacGia">Tác giả:</label>
+        <input type="text" id="tacGia" name="tacGia">
+
+        <label for="nhaXuatBan">Nhà xuất bản:</label>
+        <input type="text" id="nhaXuatBan" name="nhaXuatBan">
+    </div>
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

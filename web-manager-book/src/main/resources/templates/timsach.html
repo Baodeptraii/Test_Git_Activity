@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Sách</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Style for back button */
+        .back-button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px; /* Space below the button */
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+
+<body>
+<h2>Danh Sách Sách</h2>
+
+<!-- Nút quay lại -->
+<button class="back-button" onclick="goBack()">Quay lại</button>
+
+<table>
+    <tr>
+        <th>Mã sách</th>
+        <th>Tên sách</th>
+        <th>Thể loại</th>
+        <th>Tác giả</th>
+        <th>Tên NXB</th>
+        <th>Số lượng</th>
+        <th>Giá bán</th>
+    </tr>
+    <tr th:each="sach : ${list}">
+        <td th:text="${sach.getMaSach()}"></td>
+        <td th:text="${sach.getTenSach()}"></td>
+        <td th:text="${sach.getTheLoai()}"></td>
+        <td th:text="${sach.getTacGia()}"></td>
+        <td th:text="${sach.getTenNXB()}"></td>
+        <td th:text="${sach.getSoLuong()}"></td>
+        <td th:text="${sach.getGiaBan()}"></td>
+    </tr>
+</table>
+
+<script>
+    function goBack() {
+        window.history.back(); // Quay lại trang trước đó
+    }
+</script>
+</body>
+
+</html>

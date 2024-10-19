@@ -19,20 +19,34 @@ public class QueryJoinTableImpl implements QueryJoinTable {
     public String joinTable(Map<String,String>params)
     {
         String result="";
-        if(params.get("loai sach")!=null)
+        if(params.get("loaiSach").length()!=0)
             result+= " join the_loai on the_loai.matl= books.matl ";
-        if(params.get("tac gia")!=null)
+        if(params.get("tacGia").length()!=0)
             result +=" join tac_gia on tac_gia.matg= books.matg ";
-        if(params.get("nha xuat ban")!=null)
+        if(params.get("nhaXuatBan").length()!=0)
             result +=" join nha_xuat_ban on nha_xuat_ban.manxb= books.manxb ";
         return result;
     }
+    public String condition(Map<String,String>params)
+    {
+        String result="";
+        if(params.get("loaiSach").length()!=0)
+            result+=" and the_loai.ten_the_loai like  '"+params.get("loaiSach")+"' ";
+        if(params.get("tacGia").length()!=0)
+            result+=" and tac_gia.tentg like  '"+params.get("tacGia")+"' ";
+        if(params.get("nhaXuatBan").length()!=0)
+            result+=" and nha_xuat_ban.tennxb like  '"+params.get("nhaXuatBan")+"' ";
+        if(params.get("tenSach").length()!=0)
+            result+=" and books.ten_sach like  '"+params.get("tenSach")+"' ";
 
+        return result;
+    }
     @Override
     public List<Sach> getSach(Map<String,String>params) {
-        String sql = "select books.*, tac_gia.matg AS matg_tacgia, the_loai.matl AS matl_theloai from books ";
+        String sql = "select books.* from books ";
         sql+=joinTable(params);
         sql+=" where 1=1 ";
+        sql+=condition(params);
         Query query=entityManager.createNativeQuery(sql, Sach.class);
         return query.getResultList();
     }

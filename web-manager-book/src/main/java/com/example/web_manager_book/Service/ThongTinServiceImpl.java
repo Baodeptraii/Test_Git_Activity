@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 @Component
 public class ThongTinServiceImpl implements ThongTinService {
 
@@ -25,5 +27,18 @@ public class ThongTinServiceImpl implements ThongTinService {
             thongTinCuaHangList.add(convertThongTinDTO.convertThongTinDTO(sach));
         }
         return thongTinCuaHangList;
+    }
+
+
+
+    @Override
+    public List<ThongTinCuaHang> getListSach(Map<String,String>params) {
+        List<Sach> sachList = sachRepo.getSach(params);
+        List<ThongTinCuaHang> thongTinListSach = new ArrayList<>();
+        for(Sach sach : sachList) {
+            ThongTinCuaHang thongTinCuaHang = new ThongTinCuaHang();
+            thongTinListSach.add(convertThongTinDTO.convertThongTinDTO(sach));
+        }
+        return thongTinListSach;
     }
 }
